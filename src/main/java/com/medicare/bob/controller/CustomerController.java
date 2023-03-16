@@ -18,7 +18,7 @@ public class CustomerController {
 	
 	@GetMapping("/customers")
 	public List<Customer> getAllExpenses() {
-//		return "hello";
+
 		return customerService.getAllCustomer();
 	}
 }
