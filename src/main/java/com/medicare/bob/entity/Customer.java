@@ -20,7 +20,39 @@ public class Customer {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long customer_id;
+	private String tenant_id;
+	private String agent_id;
+	private String first_name;
+	private String middle_name;
+	private String last_name;
+	private String suffix;
+	private String ssn;
+	private String dob;
+	private String gender;
+	private String address_line1;
+	private String address_line2;
+	private String city;
+	private String state;
+	private String zip_Ext;
+	private String zipcode;
+	private String county;
+	private String phone;
+	private String cell_Phone;
+	private String email;
+	private String medicare;
+	private String parta_eff;
+	private String partb_eff;
+	private String plan_name;
+	private String spouse_firstname;
+	private String spouse_lastname;
+	private String spouse_suffix;
+	private String spouse_dob;
+	private String created_date;
 	
+
+	private String lastupdated_date; 
+	
+
 	public Long getCustomer_id() {
 		return customer_id;
 	}
@@ -319,41 +351,6 @@ public class Customer {
 	public void setLastupdated_date(String lastupdated_date) {
 		this.lastupdated_date = lastupdated_date;
 	}
-
-
-	private String tenant_id;
-	private String agent_id;
-	private String first_name;
-	private String middle_name;
-	private String last_name;
-	private String suffix;
-	private String ssn;
-	private String dob;
-	private String gender;
-	
-	private String address_line1;
-	private String address_line2;
-	
-	private String city;
-	private String state;
-	private String zip_Ext;
-	private String zipcode;
-	private String county;
-	private String phone;
-	private String cell_Phone;
-	private String email;
-	private String medicare;
-	private String parta_eff;
-	private String partb_eff;
-	private String plan_name;
-	private String spouse_firstname;
-	private String spouse_lastname;
-	private String spouse_suffix;
-	private String spouse_dob;
-	private String created_date;
-	
-
-	private String lastupdated_date; 
 	
 	
 }

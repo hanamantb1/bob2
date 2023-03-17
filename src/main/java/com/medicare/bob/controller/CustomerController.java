@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.medicare.bob.entity.Customer;
@@ -20,5 +22,16 @@ public class CustomerController {
 	public List<Customer> getAllExpenses() {
 
 		return customerService.getAllCustomer();
+	}
+	
+
+	
+	@PostMapping("/savecustomer")
+	public String saveCustomerDetails(@RequestBody Customer customer) {
+		 customerService.saveCustomer(customer);
+		 return "Succefully created user   "   + customer.getFirst_name();
+		
+
+	
 	}
 }
