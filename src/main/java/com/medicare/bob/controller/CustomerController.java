@@ -3,6 +3,9 @@ package com.medicare.bob.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -27,11 +30,16 @@ public class CustomerController {
 
 	
 	@PostMapping("/savecustomer")
-	public String saveCustomerDetails(@RequestBody Customer customer) {
+	public ResponseEntity<String> saveCustomerDetails(@RequestBody Customer customer) {
+		try {
 		 customerService.saveCustomer(customer);
-		 return "Succefully created user   "   + customer.getFirst_name();
-		
-
 	
+		 return new ResponseEntity<>("User Created Successfully "+ customer.getFirst_name(),HttpStatus.OK);
+		}
+		catch(DataAccessException e) {
+			 return new ResponseEntity<>("Somthing went wrong ",HttpStatus.OK);
+		}
+
 	}
+	
 }

@@ -1,9 +1,19 @@
 package com.medicare.bob.entity;
 
+import java.sql.Timestamp;
+import java.util.List;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,6 +30,7 @@ public class Customer {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long customer_id;
+	
 	private String tenant_id;
 	private String agent_id;
 	private String first_name;
@@ -47,10 +58,17 @@ public class Customer {
 	private String spouse_lastname;
 	private String spouse_suffix;
 	private String spouse_dob;
-	private String created_date;
 	
-
-	private String lastupdated_date; 
+	//Customer details created date and time 
+	@Column( nullable = false, updatable = false)
+	@CreationTimestamp
+	private Timestamp  created_date;
+	
+	//Customer details last update  date and time
+	@UpdateTimestamp
+	private Timestamp lastupdated_date; 
+	
+	
 	
 
 	public Long getCustomer_id() {
@@ -333,24 +351,27 @@ public class Customer {
 	}
 
 
-	public String getCreated_date() {
+	public Timestamp getCreated_date() {
 		return created_date;
 	}
 
 
-	public void setCreated_date(String created_date) {
+	public void setCreated_date(Timestamp created_date) {
 		this.created_date = created_date;
 	}
 
 
-	public String getLastupdated_date() {
+	public Timestamp getLastupdated_date() {
 		return lastupdated_date;
 	}
 
 
-	public void setLastupdated_date(String lastupdated_date) {
+	public void setLastupdated_date(Timestamp lastupdated_date) {
 		this.lastupdated_date = lastupdated_date;
 	}
 	
 	
+	 @OneToMany(targetEntity = Dependent.class,cascade = CascadeType.ALL)
+	    @JoinColumn(name ="customer_id",referencedColumnName = "customer_id")
+	    private List<Dependent> dependent;
 }

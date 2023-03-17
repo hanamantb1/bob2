@@ -29,7 +29,7 @@ public class Dependent {
 	@Column(nullable=false)
 	private Long dependent_id;
 	
-	@Column(insertable=false, updatable=false)
+
 	private String customer_id;
 	
 	private String first_name;
@@ -118,6 +118,7 @@ public class Dependent {
 //	@OnDelete(action = OnDeleteAction.CASCADE)
 //	@JsonIgnore
 //    private Customer customer;
+    
 	
 
 }
