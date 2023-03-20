@@ -30,7 +30,8 @@ public class Dependent {
 	private Long dependent_id;
 	
 
-	private String customer_id;
+	//private String customer_id;
+	
 	
 	private String first_name;
 	private String middle_name;
@@ -49,12 +50,11 @@ public class Dependent {
 	public void setDependent_id(Long dependent_id) {
 		this.dependent_id = dependent_id;
 	}
-	public String getCustomer_id() {
-		return customer_id;
-	}
-	public void setCustomer_id(String customer_id) {
-		this.customer_id = customer_id;
-	}
+
+	/*
+	 * public String getCustomer_id() { return customer_id; } public void
+	 * setCustomer_id(String customer_id) { this.customer_id = customer_id; }
+	 */
 	public String getFirst_name() {
 		return first_name;
 	}
@@ -112,12 +112,19 @@ public class Dependent {
 	
 	
  
-    
-//    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-//	@JoinColumn(name = "customer_id", nullable = false)
-//	@OnDelete(action = OnDeleteAction.CASCADE)
-//	@JsonIgnore
-//    private Customer customer;
+	
+	@ManyToOne
+    @JoinColumn(name="customer_id", nullable=true)
+	
+    private Customer customer;
+
+
+	public Customer getCustomer() {
+		return customer;
+	}
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
     
 	
 

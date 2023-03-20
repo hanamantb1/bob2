@@ -2,13 +2,17 @@ package com.medicare.bob.entity;
 
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.Set;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -371,7 +375,20 @@ public class Customer {
 	}
 	
 	
-	 @OneToMany(targetEntity = Dependent.class,cascade = CascadeType.ALL)
-	    @JoinColumn(name ="customer_id",referencedColumnName = "customer_id")
-	    private List<Dependent> dependent;
+
+//	 @OneToMany(mappedBy="customer")
+
+	 @OneToMany(fetch = FetchType.LAZY, mappedBy = "customer", cascade = CascadeType.REMOVE, orphanRemoval = true)
+	 @JsonIgnoreProperties("customer")
+	 private Set<Dependent> dependent;
+
+
+	public Set<Dependent> getDependent() {
+		return dependent;
+	}
+
+
+	public void setDependent(Set<Dependent> dependent) {
+		this.dependent = dependent;
+	}
 }
